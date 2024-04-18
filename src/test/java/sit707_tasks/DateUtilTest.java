@@ -52,7 +52,37 @@ public class DateUtilTest {
         System.out.println(date);
 	}
 	
+	@Test
+	public void testPreviousDateCalculationForAllMonthsOf2024() {
+	    // Test for all months of 2024
+	    int[] daysInMonth = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	    for (int i = 0; i < daysInMonth.length; i++) {
+	        int day = daysInMonth[i];
+	        int month = i + 1;
+	        int year = 2024;
+	        DateUtil date = new DateUtil(day, month, year);
+	        date.decrement();
+	        Assert.assertEquals("Incorrect day for " + year + "-" + month + "-" + day, day - 1, date.getDay());
+	        Assert.assertEquals("Incorrect month for " + year + "-" + month + "-" + day, month, date.getMonth());
+	        Assert.assertEquals("Incorrect year for " + year + "-" + month + "-" + day, year, date.getYear());
+	    }
+	}
 
+	@Test
+	public void testNextDateCalculationForAllMonthsOf2024() {
+	    // Test for all months of 2024
+	    int[] daysInMonth = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	    for (int i = 0; i < daysInMonth.length; i++) {
+	        int day = daysInMonth[i];
+	        int month = i + 1;
+	        int year = 2024;
+	        DateUtil date = new DateUtil(day, month, year);
+	        date.increment();
+	        Assert.assertEquals("Incorrect day for " + year + "-" + month + "-" + day, day + 1, date.getDay());
+	        Assert.assertEquals("Incorrect month for " + year + "-" + month + "-" + day, month, date.getMonth());
+	        Assert.assertEquals("Incorrect year for " + year + "-" + month + "-" + day, year, date.getYear());
+	    }
+	}
 	
 	@Test
 	public void MinimumJanuary1ShouldIncrementToJanuary2() {
